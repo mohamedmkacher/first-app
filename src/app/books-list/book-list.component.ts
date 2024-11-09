@@ -52,9 +52,17 @@ export class BooksListComponent {
     this.changeAction('');
   }
   deleteBook(indexOfDeleted: number) {
-    this.books = this.books.filter((book) => book.id != indexOfDeleted + 1);
-    this.books
-      .filter((book) => book.id > indexOfDeleted + 1)
-      .map((book) => book.id--);
+    if (
+      confirm(
+        'etes-vous surs de vouloir supprimer le livre : ' +
+          this.books[indexOfDeleted].title +
+          '?'
+      )
+    ) {
+      this.books = this.books.filter((book) => book.id != indexOfDeleted + 1);
+      this.books
+        .filter((book) => book.id > indexOfDeleted + 1)
+        .map((book) => book.id--);
+    }
   }
 }
